@@ -3,6 +3,7 @@ extern crate num_bigint;
 extern crate num_traits;
 
 use num_bigint::BigUint;
+// use num_bigint::ToBigUint;
 use num_traits::{Zero, One};
 
 fn main() {
@@ -31,6 +32,8 @@ fn main() {
 
         let factorial = factorial(number);
         println!("Factorial of {} is: {} ", number, factorial);
+        // let factorial = loop_factorial(number);
+        // println!("[LOOP] Factorial of {} is: {} ", number, factorial);
     }
    
 }
@@ -40,11 +43,14 @@ fn factorial (n: usize) -> BigUint {
         One::one()
     } else {
         factorial(n - 1) * n
-    }
-// Another solution (non-recursive):
-    // let mut result :u128 = 1;
-    // for i in (1..n).rev() {
-    //     result *= u128::from(i);
-    // }
-    // result
+    }  
 }
+
+// Another solution (non-recursive):
+// fn loop_factorial (n: usize) -> BigUint {
+//     let mut result :BigUint = One::one();
+//     for i in (1..n).rev() {
+//         result *= i;
+//     }
+//     result
+// }
