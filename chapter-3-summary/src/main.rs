@@ -1,4 +1,7 @@
 use std::io;
+use num_bigint::BigUint;
+use num_traits::{Zero, One};
+
 fn main() {
     loop {
         println!("****************************************************************");
@@ -37,8 +40,16 @@ fn main() {
     }
 }
 
-fn fahrenheit_to_celsius(celsius_temp: f64) -> f64{
+fn fahrenheit_to_celsius(celsius_temp: f64) -> f64 {
     celsius_temp * (9.0 / 5.0) + 32.0
+}
+
+fn fibonacci_nth(n: u32) -> BigUint {
+    match n {
+        0 => Zero::zero(),
+        1 => One::one(),
+        _ => fibonacci_nth(n - 1) + fibonacci_nth(n - 1),
+    }
 }
 
 fn first_option()  {
@@ -54,7 +65,15 @@ fn first_option()  {
 }
 
 fn second_option() {
-    println!("Second option chosen!");
+    println!("Please input a positive number");
+    let mut number = String::new();
+    io::stdin()
+        .read_line(&mut number)
+        .expect("Failed to read line");
+    let number = number.trim().parse::<u32>()
+                        .expect("Invalid number!");
+    let result = fibonacci_nth(number);
+    println!("The {}th Fibonacci number is: {} ", number, result);
 }
 
 fn third_option() {
