@@ -48,7 +48,7 @@ fn fibonacci_nth(n: u32) -> BigUint {
     match n {
         0 => Zero::zero(),
         1 => One::one(),
-        _ => fibonacci_nth(n - 1) + fibonacci_nth(n - 1),
+        _ => fibonacci_nth(n - 1) + fibonacci_nth(n - 2),
     }
 }
 
